@@ -1,0 +1,35 @@
+.trending-page {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+  .trending-header {
+    text-align: center;
+    width: 100%;
+  }
+  .recipe-box {
+    background-color: var(--input-fields);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-bottom: 10px;
+    width: calc(50% - 80px);
+    img {
+      border-radius: 10px;
+    }
+    .recipe-title-div {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      h6 {
+        text-decoration: underline;
+      }
+    }
+
+    @media screen and (max-width: 560px) {
+      width: 80%;
+    }
+  }
+}

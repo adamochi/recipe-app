@@ -1,4 +1,7 @@
 :root {
-  --main-bg-colour: pink;
+  --main-bg-colour: rgb(255, 233, 251);
   --main-text-colour: rgb(27, 0, 126);
+  --light-blue: rgb(224, 234, 255);
+  --dark-purple: rgb(109, 97, 187);
+  --input-fields: rgb(238, 255, 255);
 }

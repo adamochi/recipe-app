@@ -1,0 +1,17 @@
+#light-mode-button {
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(224, 234, 255, 0);
+  font-size: 40px;
+
+  &:hover {
+    transition: 0.2s;
+    background-color: rgba(109, 97, 187, 0.384);
+  }
+}

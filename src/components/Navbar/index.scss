@@ -1,15 +1,26 @@
 nav {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: row;
-  background-color: rgb(67, 132, 192);
+  background-color: rgba(80, 160, 235, 0.685);
   width: 100%;
   justify-content: center;
+  align-items: center;
   height: 100px;
+
   a {
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
     text-decoration: none;
     color: rgb(152, 251, 229);
     &:hover {
+      transition: 0.166s;
       color: purple;
       border-bottom: 2px solid rgb(152, 251, 229);
       box-sizing: border-box;
