@@ -1,8 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.scss";
 
 const CreateRecipe = () => {
+  const [respons, setRespons] = useState(false);
   const [input, setInput] = useState({
     title: "",
     catagory: "",
@@ -22,6 +23,15 @@ const CreateRecipe = () => {
   };
   const handleClick = (event) => {
     event.preventDefault();
+    if (input.title === "") {
+      return console.log("missing a title");
+    }
+    if (input.catagory === "") {
+      return console.log("please select a catagory");
+    }
+    if (input.method === "") {
+      return console.log("please write a Method");
+    }
     const newRecipe = {
       title: input.title,
       catagory: input.catagory,
@@ -29,30 +39,63 @@ const CreateRecipe = () => {
       links: input.links,
       image: input.image,
     };
-    axios.post("http://localhost:3001/create", newRecipe);
+    try {
+      axios
+        .post("http://localhost:3001/create", newRecipe)
+        .then(
+          setTimeout(() => {
+            setRespons(true);
+          }, 500)
+        )
+        .then(
+          setTimeout(() => {
+            setRespons(false);
+          }, 3000)
+        )
+        .then(
+          setTimeout(() => {
+            event.target.parentElement[1].value = "";
+          }, 3000)
+        )
+        .then(
+          setTimeout(() => {
+            setInput({
+              title: "",
+              catagory: "",
+              method: "",
+              links: "",
+              image: "",
+            });
+          }, 3000)
+        );
+    } catch {
+      console.log("error");
+    }
   };
+  useEffect(() => {
+    console.log(respons);
+  }, [respons]);
 
   return (
     <div className="upload-page container">
+      {!respons ? (
+        ""
+      ) : (
+        <div className="upload-response">
+          <h1>recipe uploaded!</h1>
+        </div>
+      )}
       <h1>Upload a recipe</h1>
       <form>
         <input
-          required={true}
+          required
           value={input.title}
           onChange={handleChange}
           type="text"
           placeholder="Recipe name"
           name="title"
         />
-        {/* <input
-          required={true}
-          value={input.catagory}
-          onChange={handleChange}
-          type="text"
-          placeholder="catagory"
-          name="catagory"
-        /> */}
-        <select onChange={handleChange} required={true} name="catagory">
+        <select onChange={handleChange} required name="catagory">
           <option value=""> Select a Catagory </option>
           <option value="dressings">Dressings</option>
           <option value="sauces">Sauces</option>
